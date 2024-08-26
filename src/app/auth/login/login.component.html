@@ -1,15 +1,17 @@
-<form>
+<!-- With the form template variable and the ngForm identifier, 
+      that allows us to access the form object created by Angular -->
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <h2>Login</h2>
 
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" />
+      <input id="email" name="email" type="email" ngModel />
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" />
+      <input id="password" name="password" type="password" ngModel />
     </div>
 
     <button class="button">Login</button>

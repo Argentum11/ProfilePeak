@@ -16,5 +16,7 @@ export class LoginComponent {
     const enteredEmail = formData.form.value.email;
     const enteredPassword = formData.form.value.password;
     console.log(enteredEmail, enteredPassword);
+
+    formData.reset();
   }
 }

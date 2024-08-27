@@ -25,6 +25,15 @@ export class LoginComponent {
      2. afterRender and afterNextRender are meant for operations that should only be executed on the client, not on the server.
         This makes them preferable to ngAfterViewInit in this context. */
     afterNextRender(() => {
+      const savedForm = window.localStorage.getItem('saved-login-form');
+      if (savedForm) {
+        const loadFormData = JSON.parse(savedForm);
+        const savedEmail = loadFormData.email;
+        setTimeout(() => {
+          this.form().controls['email'].setValue(savedEmail);
+        }, 1);
+      }
+
       const formSubscription = this.form()
         .valueChanges?.pipe(
           /* The debounceTime operator delays the emission of values from the source Observable,

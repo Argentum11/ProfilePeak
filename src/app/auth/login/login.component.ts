@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { of } from 'rxjs';
 
 function mustContainNumber(control: AbstractControl) {
   const hasNumber = /\d/.test(control.value);
@@ -15,6 +16,16 @@ function mustContainNumber(control: AbstractControl) {
   }
 
   return { doesNotContainNumber: true }; // Invalid
+}
+
+function mustBeGmail(control: AbstractControl) {
+  const isGmail = control.value.includes('@gmail.com');
+
+  if (isGmail) {
+    return of(null); // Valid
+  }
+
+  return of({ notGmail: true }); // Invalid
 }
 
 @Component({
@@ -28,6 +39,7 @@ export class LoginComponent {
   form = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.email, Validators.required],
+      asyncValidators: [mustBeGmail],
     }),
     password: new FormControl('', {
       validators: [

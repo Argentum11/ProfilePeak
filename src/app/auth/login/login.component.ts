@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { of } from 'rxjs';
+import { debounce, debounceTime, of } from 'rxjs';
 
 function mustContainNumber(control: AbstractControl) {
   const hasNumber = /\d/.test(control.value);
@@ -35,7 +35,9 @@ function mustBeGmail(control: AbstractControl) {
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  private destoryRef = inject(DestroyRef);
+
   form = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.email, Validators.required],
@@ -70,5 +72,19 @@ export class LoginComponent {
     const enteredEmail = this.form.value.email;
     const enteredPassword = this.form.value.password;
     console.log(enteredEmail, enteredPassword);
+  }
+
+  ngOnInit(): void {
+    const emailSubscription = this.form.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe({
+        next: (value) =>
+          window.localStorage.setItem(
+            'saved-login-form',
+            JSON.stringify({ email: value.email }),
+          ),
+      });
+
+    this.destoryRef.onDestroy(() => emailSubscription.unsubscribe());
   }
 }

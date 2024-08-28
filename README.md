@@ -14,3 +14,5 @@ Run `ng serve` for a dev server. Navigate to [http://localhost:4200/](http://loc
   - Reactive
     - set up forms via Typescript code
     - Validators
+      - built-in
+      - custom

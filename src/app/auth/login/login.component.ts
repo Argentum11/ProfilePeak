@@ -28,6 +28,13 @@ function mustBeGmail(control: AbstractControl) {
   return of({ notGmail: true }); // Invalid
 }
 
+let initialEmail = '';
+const savedForm = window.localStorage.getItem('saved-login-form');
+if (savedForm) {
+  const loadedForm = JSON.parse(savedForm);
+  initialEmail = loadedForm.email;
+}
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -39,7 +46,7 @@ export class LoginComponent implements OnInit {
   private destoryRef = inject(DestroyRef);
 
   form = new FormGroup({
-    email: new FormControl('', {
+    email: new FormControl(initialEmail, {
       validators: [Validators.email, Validators.required],
       asyncValidators: [mustBeGmail],
     }),

@@ -25,7 +25,12 @@
 
     <div class="control">
       <label for="confirm-password">Confirm Password</label>
-      <input id="confirm-password" type="password" name="confirm-password" />
+      <input
+        id="confirm-password"
+        type="password"
+        name="confirm-password"
+        [formControl]="form.controls.confirmPassword"
+      />
     </div>
   </div>
 
@@ -35,12 +40,22 @@
     <div class="control-row">
       <div class="control">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" />
+        <input
+          type="text"
+          id="first-name"
+          name="first-name"
+          [formControl]="form.controls.firstName"
+        />
       </div>
 
       <div class="control">
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" />
+        <input
+          type="text"
+          id="last-name"
+          name="last-name"
+          [formControl]="form.controls.lastName"
+        />
       </div>
     </div>
 
@@ -50,24 +65,44 @@
       <div class="control-row">
         <div class="control">
           <label for="street">Street</label>
-          <input type="text" id="street" name="street" />
+          <input
+            type="text"
+            id="street"
+            name="street"
+            [formControl]="form.controls.street"
+          />
         </div>
 
         <div class="control">
           <label for="number">Number</label>
-          <input type="text" id="number" name="number" />
+          <input
+            type="text"
+            id="number"
+            name="number"
+            [formControl]="form.controls.number"
+          />
         </div>
       </div>
 
       <div class="control-row">
         <div class="control">
           <label for="postal-code">Postal Code</label>
-          <input type="text" id="postal-code" name="postal-code" />
+          <input
+            type="text"
+            id="postal-code"
+            name="postal-code"
+            [formControl]="form.controls.postalCode"
+          />
         </div>
 
         <div class="control">
           <label for="city">City</label>
-          <input type="text" id="city" name="city" />
+          <input
+            type="text"
+            id="city"
+            name="city"
+            [formControl]="form.controls.city"
+          />
         </div>
       </div>
     </fieldset>
@@ -78,7 +113,7 @@
   <div class="control-row">
     <div class="control">
       <label for="role">What best describes your role?</label>
-      <select id="role" name="role">
+      <select id="role" name="role" [formControl]="form.controls.role">
         <option value="student">Student</option>
         <option value="teacher">Teacher</option>
         <option value="employee">Employee</option>
@@ -108,8 +143,13 @@
 
   <div class="control-row">
     <div class="control">
+      <input
+        type="checkbox"
+        id="terms-and-conditions"
+        name="terms"
+        [formControl]="form.controls.argree"
+      />
       <label for="terms-and-conditions">
-        <input type="checkbox" id="terms-and-conditions" name="terms" />
         I agree to the terms and conditions
       </label>
     </div>

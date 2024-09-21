@@ -12,14 +12,14 @@
     />
   </div>
 
-  <div class="control-row">
+  <div class="control-row" [formGroup]="form.controls.passwords">
     <div class="control">
       <label for="password">Password</label>
       <input
         id="password"
         type="password"
         name="password"
-        [formControl]="form.controls.password"
+        formControlName="password"
       />
     </div>
 
@@ -29,7 +29,7 @@
         id="confirm-password"
         type="password"
         name="confirm-password"
-        [formControl]="form.controls.confirmPassword"
+        formControlName="confirmPassword"
       />
     </div>
   </div>
@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset [formGroup]="form.controls.address">
       <legend>Your Address</legend>
 
       <div class="control-row">
@@ -69,7 +69,7 @@
             type="text"
             id="street"
             name="street"
-            [formControl]="form.controls.street"
+            formControlName="street"
           />
         </div>
 
@@ -79,7 +79,7 @@
             type="text"
             id="number"
             name="number"
-            [formControl]="form.controls.number"
+            formControlName="number"
           />
         </div>
       </div>
@@ -91,18 +91,13 @@
             type="text"
             id="postal-code"
             name="postal-code"
-            [formControl]="form.controls.postalCode"
+            formControlName="postalCode"
           />
         </div>
 
         <div class="control">
           <label for="city">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            [formControl]="form.controls.city"
-          />
+          <input type="text" id="city" name="city" formControlName="city" />
         </div>
       </div>
     </fieldset>

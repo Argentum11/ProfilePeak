@@ -19,3 +19,4 @@ Run `ng serve` for a dev server. Navigate to [http://localhost:4200/](http://loc
       - async
         - used to perform asynchronous validation typically when the validation logic involves operations that require some time to complete, such as making HTTP requests to a server.
     - nested form group
+    - checkbox
